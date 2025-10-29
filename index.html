@@ -3,67 +3,78 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>AI Stock Guru — India (NSE & BSE)</title>
-  <link rel="stylesheet" href="style.css"/>
-  <!-- Lightweight Charts for candlesticks -->
+  <title>AI Stock Guru — Trading Terminal</title>
+
+  <!-- lightweight charts -->
   <script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
+
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-  <header>
-    <h1>AI Stock Guru — India (NSE & BSE)</h1>
-    <p class="muted">Interactive analyzer with intraday & swing suggestions, candlestick charts, and explainable recommendations.</p>
-  </header>
-
-  <main>
-    <section class="controls card">
-      <div class="row">
-        <div class="col">
-          <label>Symbols (comma separated, e.g. RELIANCE.NS,TCS.NS). Leave blank to use default universe.</label>
-          <textarea id="symbols" placeholder="Leave blank for default universe"></textarea>
-        </div>
-        <div class="side">
-          <label>Mode</label>
-          <select id="mode">
-            <option value="intraday">Intraday (5m)</option>
-            <option value="swing" selected>Swing (daily)</option>
-          </select>
-          <label>Capital (₹)</label>
-          <input id="capital" value="100000" />
-          <label>Risk % per trade</label>
-          <input id="risk" value="1" />
-          <button id="analyzeBtn">Analyze Universe</button>
-          <div class="small muted">Tip: analyzing large universes may take time; start with 100–500 symbols for the free hosted flow.</div>
-        </div>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">AI Stock Guru — Trading Terminal (NSE & BSE)</div>
+      <div class="controls">
+        <select id="mode"><option value="intraday">Intraday (5m)</option><option value="swing" selected>Swing (Daily)</option></select>
+        <input id="search" placeholder="Search symbol (e.g. RELIANCE.NS)" />
+        <button id="addBtn">Add</button>
+        <button id="analyzeBtn" class="primary">Analyze</button>
+        <label class="switch"><input id="darkToggle" type="checkbox"/><span>Dark</span></label>
       </div>
-    </section>
+    </header>
 
-    <section class="grid">
-      <div class="left">
+    <main class="main-grid">
+      <section class="left-panel">
+        <div class="card">
+          <div class="card-head">
+            <h3>Universe (editable)</h3>
+            <div class="small">You can paste comma-separated symbols or use Add.</div>
+          </div>
+          <textarea id="universe" placeholder="Leave blank to use default NIFTY sample..."></textarea>
+          <div class="row" style="margin-top:8px">
+            <input id="capital" placeholder="Capital ₹" value="100000"/>
+            <input id="risk" placeholder="Risk %" value="1"/>
+            <input id="topN" placeholder="Top N" value="30"/>
+            <button id="scanBtn">Scan Universe</button>
+          </div>
+        </div>
+
         <div class="card">
           <h3>Top Picks</h3>
-          <div id="topArea">No results yet. Click Analyze Universe.</div>
+          <div id="leaderboard">No results yet — click Analyze / Scan</div>
         </div>
-        <div class="card">
-          <h3>All Results (first 200)</h3>
-          <div id="allArea">—</div>
-        </div>
-      </div>
 
-      <aside class="right">
         <div class="card">
-          <h3>Chart</h3>
-          <div id="chart" style="height:350px;"></div>
+          <h3>Activity / Logs</h3>
+          <pre id="logs" class="logs">Logs will appear here.</pre>
         </div>
+      </section>
+
+      <aside class="right-panel">
         <div class="card">
-          <h3>Explanation</h3>
-          <pre id="explain">Select a stock from top picks to view explanation.</pre>
+          <div class="chart-head">
+            <div>
+              <h3 id="chartTitle">Select a symbol</h3>
+              <div class="muted" id="chartSubtitle">—</div>
+            </div>
+            <div class="actions">
+              <button id="refreshChart">Refresh</button>
+              <button id="downloadCSV">Export CSV</button>
+            </div>
+          </div>
+          <div id="chart" style="height:420px"></div>
+        </div>
+
+        <div class="card">
+          <h3>Recommendation</h3>
+          <pre id="explain">Select a top pick to view analysis and rationale.</pre>
         </div>
       </aside>
-    </section>
+    </main>
 
-    <footer class="muted">© 2025 AI Stock Guru — Demo. Data via Yahoo Finance public endpoints. Use responsibly.</footer>
-  </main>
+    <footer class="footer">© 2025 AI Stock Guru — Demo. Data via Yahoo Finance public endpoints.</footer>
+  </div>
 
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
