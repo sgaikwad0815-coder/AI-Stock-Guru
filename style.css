@@ -1,24 +1,30 @@
- :root{--bg:#0f1724;--card:#071226;--text:#e6eef8;--muted:#9aa6b2;--accent:#0b5cff}
+:root{--bg:#0b1220;--card:#071226;--text:#e6eef8;--muted:#9aa6b2;--accent:#0b5cff}
 :root.light{--bg:#f4f7fb;--card:#fff;--text:#0b1724;--muted:#6b7280;--accent:#0b5cff}
 *{box-sizing:border-box}body{margin:0;font-family:Inter,Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text)}
-.dashboard{max-width:1200px;margin:16px auto;padding:12px}
-.header{display:flex;justify-content:space-between;align-items:center;padding:12px;background:linear-gradient(90deg,var(--accent),#1e6eff);border-radius:10px;color:#fff}
-.brand h1{margin:0;font-size:20px} .tag{font-size:12px;opacity:0.9}
-.header-controls{display:flex;gap:8px;align-items:center}
-.header-controls input, .header-controls select{padding:8px;border-radius:6px;border:none;min-width:180px}
+.topbar{display:flex;justify-content:space-between;align-items:center;padding:10px 16px;background:linear-gradient(90deg,var(--accent),#1e6eff);color:#fff}
+.brand{font-weight:700}
+.controls{display:flex;gap:8px;align-items:center}
+.controls input, .controls select{padding:8px;border-radius:6px;border:none;min-width:160px}
 button{padding:8px 10px;border-radius:6px;border:none;cursor:pointer;background:rgba(255,255,255,0.08);color:inherit}
-button.primary{background:#fff;color:var(--bg);font-weight:600}
-.small{font-size:12px}
-.layout{display:grid;grid-template-columns:320px 1fr;gap:12px;margin-top:12px}
-.left .card, .main .card{background:var(--card);padding:12px;border-radius:8px;box-shadow:0 8px 24px rgba(2,6,23,0.6)}
-.card h3{margin:0 0 8px 0}
-.market-row{display:flex;gap:8px}
-.metric{background:rgba(255,255,255,0.03);padding:8px;border-radius:6px;width:100%;text-align:center}
-.metric .m-title{font-size:13px;color:var(--muted)}
-#topIntraday,#topSwing{max-height:260px;overflow:auto}
-.main .chart-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
-.chart-controls input{padding:8px;border-radius:6px;border:none;min-width:160px}
-#chartContainer{height:420px;border-radius:6px;overflow:hidden;background:#fff}
-.info-card pre{white-space:pre-wrap;background:transparent;border:0;color:var(--text)}
-.footer{text-align:center;margin-top:12px;color:var(--muted);font-size:13px}
-@media (max-width:900px){ .layout{grid-template-columns:1fr} #chartContainer{height:300px} }
+#voiceBtn{font-size:16px}
+#status{margin-left:8px;font-size:13px;color:rgba(255,255,255,0.9)}
+
+.container{display:grid;grid-template-columns:320px 1fr;gap:12px;padding:16px;max-width:1200px;margin:0 auto}
+.sidebar .card, .main .card{background:var(--card);padding:12px;border-radius:8px;box-shadow:0 8px 24px rgba(2,6,23,0.6)}
+.metrics{display:flex;gap:6px}
+.metrics div{flex:1;text-align:center;padding:8px;background:rgba(255,255,255,0.02);border-radius:6px}
+.m-title{font-size:12px;color:var(--muted)}
+.card h4{margin:0 0 8px 0}
+
+#intradayList,#shortList,#alertsList{max-height:260px;overflow:auto}
+#chart{border-radius:6px}
+.analysisCard pre{white-space:pre-wrap;color:var(--muted)}
+
+.muted{color:var(--muted)}
+.small{font-size:12px;color:var(--muted)}
+
+/* responsive */
+@media (max-width:900px){
+  .container{grid-template-columns:1fr; padding:8px}
+  #chart{height:300px}
+}
