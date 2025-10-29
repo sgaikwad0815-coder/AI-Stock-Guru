@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>AI Stock Guru — India (NSE & BSE)</title>
+  <link rel="stylesheet" href="style.css"/>
+  <!-- Lightweight Charts for candlesticks -->
+  <script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
+</head>
+<body>
+  <header>
+    <h1>AI Stock Guru — India (NSE & BSE)</h1>
+    <p class="muted">Interactive analyzer with intraday & swing suggestions, candlestick charts, and explainable recommendations.</p>
+  </header>
+
+  <main>
+    <section class="controls card">
+      <div class="row">
+        <div class="col">
+          <label>Symbols (comma separated, e.g. RELIANCE.NS,TCS.NS). Leave blank to use default universe.</label>
+          <textarea id="symbols" placeholder="Leave blank for default universe"></textarea>
+        </div>
+        <div class="side">
+          <label>Mode</label>
+          <select id="mode">
+            <option value="intraday">Intraday (5m)</option>
+            <option value="swing" selected>Swing (daily)</option>
+          </select>
+          <label>Capital (₹)</label>
+          <input id="capital" value="100000" />
+          <label>Risk % per trade</label>
+          <input id="risk" value="1" />
+          <button id="analyzeBtn">Analyze Universe</button>
+          <div class="small muted">Tip: analyzing large universes may take time; start with 100–500 symbols for the free hosted flow.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid">
+      <div class="left">
+        <div class="card">
+          <h3>Top Picks</h3>
+          <div id="topArea">No results yet. Click Analyze Universe.</div>
+        </div>
+        <div class="card">
+          <h3>All Results (first 200)</h3>
+          <div id="allArea">—</div>
+        </div>
+      </div>
+
+      <aside class="right">
+        <div class="card">
+          <h3>Chart</h3>
+          <div id="chart" style="height:350px;"></div>
+        </div>
+        <div class="card">
+          <h3>Explanation</h3>
+          <pre id="explain">Select a stock from top picks to view explanation.</pre>
+        </div>
+      </aside>
+    </section>
+
+    <footer class="muted">© 2025 AI Stock Guru — Demo. Data via Yahoo Finance public endpoints. Use responsibly.</footer>
+  </main>
+
+<script src="script.js"></script>
+</body>
+</html>
